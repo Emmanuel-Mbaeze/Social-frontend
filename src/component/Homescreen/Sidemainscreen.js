@@ -1,28 +1,48 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
+import Displaycard from "./Displaycard";
+
 const Sidemainscreen = () => {
+  const [display, setDisplay] = useState(false);
   return (
     <Container>
       <Wrapper>
         <Holder>
-          <Image />
+          <Image src="/images/blue.JPG" />
           <Hold>
-            <Name>Boy</Name>
-            <Profile>Profile</Profile>
+            <Name>name</Name>
+            <Profile>profile</Profile>
           </Hold>
         </Holder>
+
         <Text>
-          <Suggest>For you</Suggest>
+          <Suggest>Suggestions For You</Suggest>
           <Action>See All</Action>
         </Text>
-        <Holder>
-          <Image />
-          <Hold>
-            <Name>Boy</Name>
-            <Profile>Profile</Profile>
-          </Hold>
-        </Holder>
+
         <Text>
+          <Holder>
+            <Image1 src="/images/blue.JPG" />
+            <Hold>
+              <DName
+                onMouseEnter={() => {
+                  setDisplay(true);
+                }}
+                onMouseLeave={() => {
+                  setDisplay(false);
+                }}
+              >
+                name
+              </DName>
+              <Profile>profile</Profile>
+              {display ? (
+                <Div>
+                  <Displaycard setDisplay={setDisplay} />
+                </Div>
+              ) : null}
+            </Hold>
+          </Holder>
+
           <Content>Follow</Content>
         </Text>
       </Wrapper>
@@ -31,46 +51,90 @@ const Sidemainscreen = () => {
 };
 
 export default Sidemainscreen;
-// const Container = styled.div``
-// const Container = styled.div``
-const Content = styled.div``;
+const DName = styled.div`
+  font-size: 12px;
+  font-weight: 700;
+  position: relative;
+  z-index: 10;
+  :after {
+    content: "";
+    width: 65%;
+    background-color: purple;
+    position: absolute;
+    left: 0;
+    height: 2px;
+    bottom: 0;
+    opacity: 0;
+    transition: all 350ms;
+  }
+  :hover {
+    cursor: pointer;
+    ::after {
+      opacity: 1;
+    }
+  }
+`;
+const Div = styled.div`
+  position: absolute;
+  top: 0;
+`;
+
+const Image1 = styled.img`
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 10px;
+`;
+
+const Content = styled.div`
+  cursor: pointer;
+  color: #69bff8;
+`;
+
 const Action = styled.div`
   cursor: pointer;
   text-transform: uppercase;
-  font-weight: bold;
+  font-weight: 900;
 `;
+
 const Suggest = styled.div`
   font-weight: 700;
-  font-size: 14px;
-  color: grey;
+  font-size: 19px;
+  color: gray;
   cursor: pointer;
 `;
 const Text = styled.div`
+  margin: 30px 0;
   display: flex;
   justify-content: space-between;
-  margin: 30px 0;
+  align-items: center;
 `;
+
 const Profile = styled.div``;
 const Name = styled.div`
   font-weight: 700;
 `;
-const Hold = styled.div``;
-const Image = styled.div`
+const Hold = styled.div`
+  position: relative;
+`;
+
+const Image = styled.img`
   width: 50px;
   height: 50px;
-  border-radius: 100%;
+  border-radius: 50%;
   object-fit: cover;
-  outline: 3px solid purple;
-  border: 1.2px solid transparent;
-  background-clip: content-box;
-  margin-right: 15px;
+  margin-right: 10px;
 `;
 const Holder = styled.div`
   display: flex;
+  align-items: center;
+  font-size: 18px;
 `;
+
 const Wrapper = styled.div`
   margin-left: 50px;
-  width: 420px;
+  width: 400px;
 `;
 const Container = styled.div`
   width: 100%;

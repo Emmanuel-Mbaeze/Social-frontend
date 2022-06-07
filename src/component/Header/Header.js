@@ -72,7 +72,7 @@ const SearchBar = styled.div`
   height: 37px;
   border: 1px solid grey;
   border-radius: 4px;
-  background-color: lightgrey;
+  background-color: #fafafa;
 `;
 const Logo = styled.div`
   margin-right: 40px;

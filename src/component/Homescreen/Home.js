@@ -54,7 +54,7 @@ const Container = styled.div`
   min-height: calc(100vh-60px);
   height: 100%;
   padding-top: 40px;
-  background-color: lightgrey;
+  background-color: #fafafa;
   display: flex;
   justify-content: center;
 `;

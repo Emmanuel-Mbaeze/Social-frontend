@@ -1,7 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { FiSettings } from "react-icons/fi";
+import { BsGrid3X3, BsBookmark, BsPersonBoundingBox } from "react-icons/bs";
+import { MdSlowMotionVideo } from "react-icons/md";
 const Detailscreen = () => {
+  const [post, setPost] = useState(true);
+  const [video, setVideo] = useState(false);
+  const [save, setSave] = useState(false);
+  const [tag, setTag] = useState(false);
   return (
     <Container>
       <Wrapper>
@@ -29,18 +35,122 @@ const Detailscreen = () => {
             </Namedetails>
             <Details>
               <Name>Manel</Name>
-              <Bio>Dev</Bio>
+              <Bio>
+                Trust the process 🌈 Software developer/Cloud engineer 🌚Black
+                🖤
+              </Bio>
               <Website href="#">Manel.com</Website>
             </Details>
           </Contents>
         </Top>
+
+        <Nav>
+          <NavHolder
+            bg={post ? "bg" : ""}
+            onClick={() => {
+              setPost(true);
+              setVideo(false);
+              setSave(false);
+              setTag(false);
+            }}
+          >
+            <NavIcon />
+            <Title cap fs>
+              Posts
+            </Title>
+          </NavHolder>
+          <NavHolder
+            bg={video ? "bg" : ""}
+            onClick={() => {
+              setPost(false);
+              setVideo(true);
+              setSave(false);
+              setTag(false);
+            }}
+          >
+            <NavIcon1 />
+            <Title cap fs>
+              Video
+            </Title>
+          </NavHolder>
+          <NavHolder
+            bg={save ? "bg" : ""}
+            onClick={() => {
+              setPost(false);
+              setVideo(false);
+              setSave(true);
+              setTag(false);
+            }}
+          >
+            <NavIcon2 />
+            <Title cap fs>
+              Save
+            </Title>
+          </NavHolder>
+          <NavHolder
+            bg={tag ? "bg" : ""}
+            onClick={() => {
+              setPost(false);
+              setVideo(false);
+              setSave(false);
+              setTag(true);
+            }}
+          >
+            <NavIcon3 />
+            <Title cap fs>
+              Tags
+            </Title>
+          </NavHolder>
+        </Nav>
       </Wrapper>
     </Container>
   );
 };
 
 export default Detailscreen;
-// const Contents = styled.div``
+const NavIcon3 = styled(BsPersonBoundingBox)`
+  font-size: 10px;
+  margin-right: 3px;
+`;
+
+const NavIcon2 = styled(BsBookmark)`
+  font-size: 10px;
+  margin-right: 3px;
+`;
+
+const NavIcon1 = styled(MdSlowMotionVideo)`
+  font-size: 10px;
+  margin-right: 3px;
+`;
+
+const NavIcon = styled(BsGrid3X3)`
+  font-size: 10px;
+  margin-right: 3px;
+`;
+
+const NavHolder = styled.div`
+  display: flex;
+  align-items: center;
+  margin-right: 30px;
+  position: relative;
+  :after {
+    content: "";
+    height: 2px;
+    background-color: ${({ bg }) => (bg ? "purple" : "transparent")};
+    width: 100%;
+    position: absolute;
+    top: -21px;
+  }
+  cursor: pointer;
+`;
+
+const Nav = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  border-top: 1px solid silver;
+  padding: 20px 0;
+`;
 const Contents = styled.div`
   display: flex;
   flex-direction: column;
@@ -59,7 +169,10 @@ const Details = styled.div`
   font-size: 13px;
 `;
 const Title = styled.div`
-  text-transform: ${({ cap }) => (cap ? "Uppercase" : "normal")};
+  text-transform: ${({ cap }) => (cap ? "uppercase" : "normal")};
+  font-size: ${({ fs }) => (fs ? "10px" : "12px")};
+  font-weight: ${({ fs }) => (fs ? "500" : "normal")};
+  color: ${({ fs }) => (fs ? "lightgray" : "black")};
 `;
 const Post = styled.div`
   display: flex;
